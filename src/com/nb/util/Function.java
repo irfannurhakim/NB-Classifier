@@ -17,8 +17,7 @@ import java.util.Iterator;
 public class Function {
 
     public static HashMap<String, Double> vnc(ArrayList<DataModel> data) {
-        double pos = 0;
-        double neg = 0;
+        double pos = 0, neg =0;
         HashMap<String, Double> res = new HashMap<String, Double>();
         for (Iterator<DataModel> it = data.iterator(); it.hasNext();) {
             DataModel dataModel = it.next();
@@ -65,17 +64,18 @@ public class Function {
 
     public static HashMap<Boolean, Double> singleDataClassification(Atribut[] attr, DataModel newData, HashMap<String, Double> model) {
         HashMap<Boolean, Double> xx = new HashMap<Boolean, Double>();
-        double pos = 1;
-        double neg = 1;
+        double pos = 1, neg = 1;
         for (int i = 0; i < attr.length; i++) {
             pos *= model.get(attr[i].getName() + "-" + newData.getAtribut()[i] + "-Yes");
             neg *= model.get(attr[i].getName() + "-" + newData.getAtribut()[i] + "-No");
         }
         
+        pos = pos*model.get("valPositif");
+        neg = neg*model.get("valNegatif");
         if(pos >= neg){
-            xx.put(Boolean.TRUE, pos);
+            xx.put(Boolean.TRUE, pos/(pos+neg));
         } else {
-            xx.put(Boolean.FALSE, neg);
+            xx.put(Boolean.FALSE, neg/(neg+pos));
         }
         
         return xx;

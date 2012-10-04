@@ -51,7 +51,7 @@ public class NaiveBayesClassifier {
         
         model = Function.model(dataAtribut, data, vnc);
         
-        System.out.println(Function.singleDataClassification(dataAtribut, new DataModel(new String[]{"Sunny","Cool","Normal","Strong"}, false), model));
+        System.out.println(Function.singleDataClassification(dataAtribut, new DataModel(new String[]{"Sunny","Cool","High","Strong"}, false), model));
 
     }
 }
