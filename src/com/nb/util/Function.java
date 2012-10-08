@@ -59,6 +59,7 @@ public class Function {
         
         aa.put("valPositif", vnc.get("valPositif"));
         aa.put("valNegatif", vnc.get("valNegatif"));
+        System.out.println(aa);
         return aa;
     }
 
@@ -72,10 +73,15 @@ public class Function {
         
         pos = pos*model.get("valPositif");
         neg = neg*model.get("valNegatif");
+        
+        System.out.println("Negative ="+neg/(neg+pos));
+        System.out.println("Positive ="+pos/(pos+neg));
         if(pos >= neg){
             xx.put(Boolean.TRUE, pos/(pos+neg));
+            
         } else {
             xx.put(Boolean.FALSE, neg/(neg+pos));
+            
         }
         
         return xx;
